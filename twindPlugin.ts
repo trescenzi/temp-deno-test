@@ -43,7 +43,7 @@ export function setup({selfURL, ...config}: Options, sheet: Sheet) {
 }
 
 export function plugin(options: Options): Plugin {
-  const sheet = virtual();
+  const sheet = virtual(true);
   setup(options, sheet);
   const main = `data:application/javascript,import hydrate from "${
     new URL("./twind/main.ts", import.meta.url).href
@@ -55,7 +55,7 @@ export default function(state) { hydrate(options, state); }`;
     entrypoints: { "main": main },
     render(ctx) {
       const res = ctx.render();
-      const  cssText = stringify(sheet.target);
+      const cssText = stringify(sheet.target);
       const scripts = [];
       if (res.requiresHydration) scripts.push({ entrypoint: "main", state: [] });
       return {
