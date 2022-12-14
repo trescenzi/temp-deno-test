@@ -1,5 +1,6 @@
-import { Options } from "$fresh/plugins/twind.ts";
+import { defineConfig } from "https://esm.sh/@twind/core@1.0.3"
+import presetTailwind from "https://esm.sh/@twind/preset-tailwind@1.0.1";
 
-export default {
-  selfURL: import.meta.url,
-} as Options;
+export default defineConfig({
+  presets: [presetTailwind()],
+});
