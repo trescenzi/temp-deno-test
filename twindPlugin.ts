@@ -4,8 +4,7 @@ import { Plugin } from "$fresh/server.ts";
 
 export const STYLE_ELEMENT_ID = "__FRSH_TWIND";
 
-export interface Options {
-  config: TwindConfig;
+export interface Options extends TwindConfig {
   selfURL: string;
 }
 
@@ -18,8 +17,8 @@ declare module "preact" {
   }
 }
 
-export function setup(options: Options, sheet: Sheet) {
-  twindSetup(options.config, sheet);
+export function setup({selfURL, ...config}: Options, sheet: Sheet) {
+  twindSetup(config, sheet);
 
   const originalHook = preactOptions.vnode;
   // deno-lint-ignore no-explicit-any

@@ -10,8 +10,4 @@ import manifest from "./fresh.gen.ts";
 import {plugin} from "./twindPlugin.ts";
 import twindConfig from "./twind.config.ts";
 
-await start(manifest, { plugins: [plugin({
-    config: twindConfig,
-    selfURL: import.meta.url
-  })] 
-});
+await start(manifest, { plugins: [plugin(twindConfig)] });
